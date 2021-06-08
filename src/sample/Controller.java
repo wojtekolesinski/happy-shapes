@@ -1,7 +1,7 @@
 package sample;
 
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
@@ -20,10 +20,10 @@ public class Controller {
 
     }
 
-    public Parent getView() {
+    public Scene getView() {
         HBox root = new HBox();
-        ShapePanel shapePanel = new ShapePanel(600, 300);
-        shapePanel.getStyleClass().add("canvas");
+        ShapesPanel shapesPanel = new ShapesPanel(600, 300);
+        shapesPanel.getStyleClass().add("canvas");
         VBox buttons = new VBox();
         buttons.setSpacing(5);
         buttons.setStyle("-fx-padding : 10");
@@ -34,7 +34,7 @@ public class Controller {
         label.setAlignment(Pos.BASELINE_RIGHT);
         label.setMinWidth(300);
         label.setMinHeight(120);
-        label.textProperty().bind(shapePanel.text.textProperty());
+        label.textProperty().bind(shapesPanel.text.textProperty());
 
         ToggleButton rectangleButton = new ToggleButton("Rectangle");
         ToggleButton triangleButton = new ToggleButton("Triangle");
@@ -49,26 +49,26 @@ public class Controller {
         rectangleButton.setSelected(true);
 
         rectangleButton.setOnAction(e -> {
-            shapePanel.setMode(ShapePanel.RECTANGLE);
+            shapesPanel.setMode(ShapesPanel.RECTANGLE);
             resetButtons(buttonsList);
             rectangleButton.setSelected(true);
         });
         triangleButton.setOnAction(e -> {
-            shapePanel.setMode(ShapePanel.TRIANGLE);
+            shapesPanel.setMode(ShapesPanel.TRIANGLE);
             resetButtons(buttonsList);
             triangleButton.setSelected(true);
         });
         ovalButton.setOnAction(e -> {
-            shapePanel.setMode(ShapePanel.OVAL);
+            shapesPanel.setMode(ShapesPanel.OVAL);
             resetButtons(buttonsList);
             ovalButton.setSelected(true);
         });
 
 
         buttons.getChildren().addAll(label, rectangleButton, triangleButton, ovalButton);
-        root.getChildren().addAll(shapePanel, buttons);
+        root.getChildren().addAll(shapesPanel, buttons);
         root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        return root;
+        return new Scene(root);
     }
 
     private void resetButtons(List<ToggleButton> buttons) {

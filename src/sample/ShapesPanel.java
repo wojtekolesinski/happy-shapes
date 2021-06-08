@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import java.util.Arrays;
 
 
-public class ShapePanel extends Canvas {
+public class ShapesPanel extends Canvas {
 
     public final static int RECTANGLE = 0;
     public final static int TRIANGLE = 1;
@@ -41,7 +41,7 @@ public class ShapePanel extends Canvas {
         this.areaLabel.set(areaLabel);
     }
 
-    public ShapePanel(double v, double v1) {
+    public ShapesPanel(double v, double v1) {
         super(v, v1);
 
         GraphicsContext g = getGraphicsContext2D();
